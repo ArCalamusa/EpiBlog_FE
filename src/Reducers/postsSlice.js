@@ -13,7 +13,7 @@ export const getPosts = createAsyncThunk(
     async ({page, pageSize}, { rejectWithValue }) => {
         //funzione gestione errore in fase di rigetto, lo mostra
         try {
-            const response = await fetch(`http://localhost:5050/posts?page=${page}&pageSize=${pageSize}`);
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts?page=${page}&pageSize=${pageSize}`);
             const data = await response.json();
             return data;
         } catch (error) {
