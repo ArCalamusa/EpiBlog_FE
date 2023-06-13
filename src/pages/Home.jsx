@@ -6,9 +6,14 @@ import { Container, Row, Col } from "react-bootstrap"
 import ResponsivePagination from 'react-responsive-pagination'
 import useSession from "../hooks/useSession"
 import NavScrollExample from "../Components/Navigation"
+import useDecodedSession from "../hooks/useDecodedSession"
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  //hook useDecodedSession
+  const actualUser = useDecodedSession();
+  /*console.log(useDecodedSession) //in console non vedo il ruolo*/
 
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(8)
@@ -43,7 +48,7 @@ const Home = () => {
                   title={item.title}
                   img={item.img}
                   content={item.content}
-                  author={item.author}
+                  author={item.author?.userName ? item.author?.userName : item.author} // REFERENCE***
                   rate={item.rate}
                 />
               ))}
